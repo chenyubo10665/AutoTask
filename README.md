@@ -21,12 +21,19 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.5.2-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.2/AutoTask-1.5.2-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.5.2-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.2/AutoTask-1.5.2-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.5.2-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.2/AutoTask-1.5.2-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.5.2-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.2/AutoTask-1.5.2-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.2/AutoTask-1.5.2-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.5.3-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.3/AutoTask-1.5.3-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.5.3-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.3/AutoTask-1.5.3-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.5.3-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.3/AutoTask-1.5.3-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.5.3-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.3/AutoTask-1.5.3-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.3/AutoTask-1.5.3-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.5.3 更新摘要
+
+- **修复：选择规则界面竖屏比横屏少一项**。购物车收起时只给右侧选项列表加了底部内边距，左侧分类栏没加，竖屏下「权限控制」「通知操作」被挡住；现在两侧都留出购物车高度。
+- **新增：规则搜索**。选择规则界面顶部可搜，**跨所有分类**实时过滤，不区分大小写，也匹配 Shizuku / API 级别等标记；无结果时给出提示，点 ✕ 清空回到原分类。
+- 去掉右侧列表重复的顶部内边距，横屏顶部不再有多余空档。
+- 版本 1.5.2(59) → 1.5.3(60)。
 
 ## 1.5.2 更新摘要
 
