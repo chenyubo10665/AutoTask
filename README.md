@@ -21,12 +21,27 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.5.1-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.1/AutoTask-1.5.1-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.5.1-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.1/AutoTask-1.5.1-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.5.1-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.1/AutoTask-1.5.1-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.5.1-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.1/AutoTask-1.5.1-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.1/AutoTask-1.5.1-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.5.2-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.2/AutoTask-1.5.2-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.5.2-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.2/AutoTask-1.5.2-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.5.2-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.2/AutoTask-1.5.2-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.5.2-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.2/AutoTask-1.5.2-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.2/AutoTask-1.5.2-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.5.2 更新摘要
+
+**本版重点：更新检查改为从本仓库的 GitHub Releases 获取。**
+
+- 原来请求原作者早已停用的服务器（`api.bq04.com`），中间还被改成过"直接显示无更新"的占位实现，等于更新检查完全失效。
+- 现在启动时与手动点「检查更新」都会读取 `releases/latest`，**按设备架构自动选包**（arm64-v8a / armeabi-v7a / x86 / x86_64，选不到退 universal）。
+- 版本比较改为按版本名（数字段比较，`1.5.10 > 1.5.9`），不再依赖 versionCode。
+- 弹窗「下载」直接打开适合你机型的 APK 直链；没有附件时退回 Release 页面。
+- 以后有新版本应用自己就能发现并下载，不用再等群里通知。
+
+其他修复：
+
+- **Android 7.x 启动闪退**：`NotificationChannel` 等 API 26 接口未做版本判断，服务创建即抛 `NoClassDefFoundError`；现已统一走兼容封装。
+- **Shizuku 服务启动弹"发生错误"**：`coroutine-ui-automator` 单独开混淆把 `uiautomator` 模块整个收缩掉，release 包里 0 个类；已关闭库级混淆并补齐反射 keep。
 
 ## 1.5.1 更新摘要
 
