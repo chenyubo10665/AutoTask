@@ -21,12 +21,22 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.5.3-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.3/AutoTask-1.5.3-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.5.3-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.3/AutoTask-1.5.3-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.5.3-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.3/AutoTask-1.5.3-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.5.3-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.3/AutoTask-1.5.3-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.3/AutoTask-1.5.3-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.5.4-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.4/AutoTask-1.5.4-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.5.4-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.4/AutoTask-1.5.4-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.5.4-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.4/AutoTask-1.5.4-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.5.4-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.4/AutoTask-1.5.4-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.4/AutoTask-1.5.4-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.5.4 更新摘要
+
+**本版重点：修复升级后首次启动误报「服务注册失败」。**
+
+- 症状：从旧版升级安装后第一次打开，会弹「本应用不能与其他版本的同类自动化应用（如另一版自动任务、Thanox 的 Automation 功能）同时运行」，但其实并没有装第二个自动化应用，重启一次就自己好了。
+- 这是**误报**。一是升级瞬间 Shizuku 会注销旧版的特权服务（版本号对不上），新进程刚起来去绑定会拿到失效 binder 或撞上尚未释放的 UiAutomation 注册，下一次连接就正常；二是旧代码用 `contains("registered")` 判断冲突，**任何**含这个词的异常都会被翻译成「另一个自动化应用在运行」。
+- 现在判断改为精确匹配 `UiAutomationService` + `already registered`，只有真被别的自动化应用占着才提示那条冲突说明，其余错误如实显示。
+- 升级后首次绑定的瞬态失败改为**自动重试**（最多 3 次），几乎都是一次就成功，用户看不到弹窗、服务直接可用。
+- 版本 1.5.3(60) → 1.5.4(61)。
 
 ## 1.5.3 更新摘要
 
