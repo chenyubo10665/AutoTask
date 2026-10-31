@@ -21,12 +21,23 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| `AutoTask-1.5.0-universal.apk` | 通用包，四种 ABI 合一，体积最大 |
-| `AutoTask-1.5.0-arm64-v8a.apk` | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| `AutoTask-1.5.0-armeabi-v7a.apk` | 32 位老机型 |
-| `AutoTask-1.5.0-x86_64.apk` / `-x86.apk` | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.5.1-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.1/AutoTask-1.5.1-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.5.1-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.1/AutoTask-1.5.1-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.5.1-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.1/AutoTask-1.5.1-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.5.1-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.1/AutoTask-1.5.1-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.1/AutoTask-1.5.1-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.5.1 更新摘要
+
+同步群友 🍀 2026-10-31 的进度（12 个提交 + 工作区改动），主要是日志体系与性能方面的工作：
+
+- **新增「清理后台」硬件操作**：枚举第三方应用后逐个 `force-stop`（走 Shizuku 特权 binder），支持**排除应用白名单**。
+- **日志系统重构**：主进程与特权进程日志统一写入应用专属目录的 `trace.log`（特权进程经 binder IPC 转发），支持 logcat 镜像；反馈时直接附这一个文件即可。
+- **日志降噪**：事件门未命中、任务整体成功时不再输出详细规则日志，只在失败时保留。
+- **找图提速**：改为「先用所有缩放尺度只搜选定区域，区域全失败才做全屏」，避免每个尺度都跑一次全屏匹配（原来最坏累积约 6 秒）。
+- 修复：清理后台不生效 / 因 `am kill-all` 杀掉本应用特权进程而崩溃、sui 模式误提示未安装 Shizuku、导入旧版任务文件时提示含糊、分享文件时 FileProvider 异常带崩界面、「关于」页关闭日志开关崩溃。
+- 从 1.5.0 升级直接覆盖安装即可（同包名同签名），无需卸载。
 
 ## 1.5.0 更新摘要
 
