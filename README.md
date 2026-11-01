@@ -21,12 +21,37 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.5.7r487-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7r487/AutoTask-1.5.7r487-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.5.7r487-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7r487/AutoTask-1.5.7r487-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.5.7r487-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7r487/AutoTask-1.5.7r487-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.5.7r487-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7r487/AutoTask-1.5.7r487-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7r487/AutoTask-1.5.7r487-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.6.0-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.0/AutoTask-1.6.0-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.6.0-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.0/AutoTask-1.6.0-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.6.0-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.0/AutoTask-1.6.0-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.6.0-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.0/AutoTask-1.6.0-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.0/AutoTask-1.6.0-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.6.0 更新摘要
+
+### ✨ AI 生成任务
+
+任务编辑器右上角新增「AI 生成」按钮（✨），用自然语言描述想要的规则，AI 会结合当前任务已有的规则（可选连带读取最近运行记录）给出方案：
+
+- 结果先以**概览卡片**展示标题与逐条规则，点「满意」后才应用到编辑器
+- 不满意可就地写反馈让它重新生成，最多 3 轮
+- 应用后只替换标题与说明等内容，**不会自动保存**，仍需你手动点保存
+
+### 🔑 AI 服务配置
+
+「更多」→「AI 配置」中填写 API Key、接口地址（OpenAI 兼容，留空默认 `https://api.openai.com/v1`）、模型与思考强度：
+
+- 支持一键「获取可用模型」与「测试连接」
+- 思考强度对应 temperature 0.2 / 0.5 / 0.8
+- 可开关「允许 AI 读取运行记录」，Key 只保存在本机，不上传任务数据
+
+### 🐞 修复
+
+- 修复每次更新后首启庆祝窗**正文不显示**的问题（内容区域高度被压成 0）
+- 修复 AI 配置页按钮渲染成色块的问题
+
+- 版本 1.5.7r487(65) → 1.6.0(72)。
 
 ## 1.5.7r487 更新摘要
 
