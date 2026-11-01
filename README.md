@@ -21,12 +21,28 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.5.7-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7/AutoTask-1.5.7-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.5.7-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7/AutoTask-1.5.7-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.5.7-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7/AutoTask-1.5.7-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.5.7-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7/AutoTask-1.5.7-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7/AutoTask-1.5.7-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.5.7r487-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7r487/AutoTask-1.5.7r487-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.5.7r487-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7r487/AutoTask-1.5.7r487-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.5.7r487-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7r487/AutoTask-1.5.7r487-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.5.7r487-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7r487/AutoTask-1.5.7r487-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7r487/AutoTask-1.5.7r487-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.5.7r487 更新摘要
+
+### 🎉 回归经典：更新完成礼炮 + 本版更新内容
+
+之前的版本里，原作者更新服务器还在的时候，每次更新完都会弹一个窗展示本次更新内容，并放礼炮庆祝；服务器下线后这个弹窗变成空白。
+
+本次把「更新内容 + 礼炮」**内置进安装包**，恢复此仪式：
+
+- 更新完成后**首次启动**弹窗展示本版更新内容，并放礼炮（confetti）庆祝
+- 更新内容已打包进 APK，**不再依赖任何服务器**，永远不会再变空白
+- 每个版本只在升级后弹一次
+
+其他：多线程分段下载、下载进度/速度显示、竖屏内容偏上修复（随本版一并包含）。
+
+- 版本 1.5.7(64) → 1.5.7r487(65)。
 
 ## 1.5.7 更新摘要
 
