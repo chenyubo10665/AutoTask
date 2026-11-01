@@ -21,12 +21,28 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.5.5-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.5/AutoTask-1.5.5-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.5.5-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.5/AutoTask-1.5.5-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.5.5-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.5/AutoTask-1.5.5-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.5.5-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.5/AutoTask-1.5.5-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.5/AutoTask-1.5.5-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.5.6-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.6/AutoTask-1.5.6-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.5.6-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.6/AutoTask-1.5.6-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.5.6-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.6/AutoTask-1.5.6-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.5.6-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.6/AutoTask-1.5.6-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.6/AutoTask-1.5.6-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.5.6 更新摘要
+
+### 新增：应用内直接下载并安装更新
+
+检测到新版本后不再跳转浏览器：点「下载」直接在应用内下载安装包，完成后自动调起系统安装器。
+
+- **下载前按设备 CPU 架构自动选包**（arm64-v8a / armeabi-v7a / x86_64 / x86，选不到退 universal），只下载你需要的包（约 4~6 MB），不用在浏览器里挑
+- 需要一次性授予「安装未知来源应用」权限，应用内会引导到授权页
+- 真机（Android 7.1.2）完整走通：检测 → 下载 → 拉起安装器 → 覆盖升级成功、数据保留
+
+### 修复：竖屏四个主界面内容偏上、滚不到顶
+
+1.5.5 的横屏适配用了已废弃的 `systemUiVisibility` 接口，它会清掉 edge-to-edge 标记，导致顶部标题栏拿不到状态栏占位，任务列表第一项被标题栏压住、也滚不回顶部。已改用 `WindowInsetsControllerCompat` 控制导航栏显隐，竖屏恢复正常。
+
+- 版本 1.5.5(62) → 1.5.6(63)。
 
 ## 1.5.5 更新摘要
 
@@ -43,7 +59,7 @@
 - 每个标签的数字角标照常生效
 - 旋转回竖屏立即恢复底部三标签 + 底部导航键
 
-竖屏样式无变化。
+竖屏样式无变化。（**更正**：本版实际引入了竖屏内容偏上的回归，已在 1.5.6 修复。）
 
 ### 包含 1.5.4 的修复：升级后首次启动误报「服务注册失败」
 
