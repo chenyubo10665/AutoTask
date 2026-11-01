@@ -21,12 +21,35 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.5.4-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.4/AutoTask-1.5.4-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.5.4-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.4/AutoTask-1.5.4-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.5.4-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.4/AutoTask-1.5.4-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.5.4-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.4/AutoTask-1.5.4-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.4/AutoTask-1.5.4-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.5.5-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.5/AutoTask-1.5.5-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.5.5-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.5/AutoTask-1.5.5-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.5.5-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.5/AutoTask-1.5.5-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.5.5-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.5/AutoTask-1.5.5-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.5/AutoTask-1.5.5-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.5.5 更新摘要
+
+### 新增：GitHub Issues 反馈入口
+
+之前点「反馈 & 交流」只有「加群」和「邮件」（邮件因未配邮箱无法使用）。现在加了 **`GitHub Issues`** 项，点击直接跳转仓库的 Issues 页面，可上传截图、附加日志、描述问题。
+
+### 新增：横屏沉浸式导航栏 + 侧边标签栏
+
+横屏使用时（平板、支架、旋转手机至宽屏）：
+
+- **底部三大金刚键自动隐藏**（上滑调出），内容区域更高
+- **底部标签栏移到屏幕左侧**成一列图标（`NavigationRailView`），单手拇指就能碰到
+- 每个标签的数字角标照常生效
+- 旋转回竖屏立即恢复底部三标签 + 底部导航键
+
+竖屏样式无变化。
+
+### 包含 1.5.4 的修复：升级后首次启动误报「服务注册失败」
+
+（1.5.5 完全包含 1.5.4 的改动，从 1.5.3 或更早版本升级的用户可直接跳到本版。）
+
+- 版本 1.5.4(61) → 1.5.5(62)。
 
 ## 1.5.4 更新摘要
 
