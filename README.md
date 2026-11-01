@@ -21,12 +21,27 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.5.6-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.6/AutoTask-1.5.6-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.5.6-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.6/AutoTask-1.5.6-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.5.6-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.6/AutoTask-1.5.6-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.5.6-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.6/AutoTask-1.5.6-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.6/AutoTask-1.5.6-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.5.7-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7/AutoTask-1.5.7-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.5.7-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7/AutoTask-1.5.7-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.5.7-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7/AutoTask-1.5.7-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.5.7-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7/AutoTask-1.5.7-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.5.7/AutoTask-1.5.7-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.5.7 更新摘要
+
+### 提速：应用内更新下载改为多线程分段下载
+
+- 探测到 GitHub 支持 Range 分段后，**4 线程并发**下载文件各段；真机实测 4 MB 更新包从约 48 秒降到约 18 秒
+- 服务器不支持分段时自动退回单线程流式下载
+- 每个分段独立重试（最多 3 次）并**断点续传**：弱网下某一段连接超时不再导致整个下载失败
+
+### 新增：下载进度与速度显示
+
+- 下载弹窗显示**进度条 + 百分比 + 实时速度 + 已下载/总大小**（如 `50% · 1.03 MB/s · 2.03 MB / 4.05 MB`）
+- 新增**取消按钮**，可随时中断并清理未完成的文件
+
+- 版本 1.5.6(63) → 1.5.7(64)。
 
 ## 1.5.6 更新摘要
 
