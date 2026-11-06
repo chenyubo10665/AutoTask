@@ -21,12 +21,25 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.6.8-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.8/AutoTask-1.6.8-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.6.8-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.8/AutoTask-1.6.8-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.6.8-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.8/AutoTask-1.6.8-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.6.8-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.8/AutoTask-1.6.8-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.8/AutoTask-1.6.8-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.6.9-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9/AutoTask-1.6.9-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.6.9-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9/AutoTask-1.6.9-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.6.9-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9/AutoTask-1.6.9-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.6.9-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9/AutoTask-1.6.9-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9/AutoTask-1.6.9-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.6.9 更新摘要
+
+两个界面问题修复。
+
+1. **修复对话框大标题显示错误**：任务编辑器里"放弃更改"确认框的标题曾显示成「感谢您的支持」。
+   原因是 `makeSimplePromptDialog` 的 `inline` 默认参数 `title = R.string.tip` 被内联成数字资源 ID，
+   这里取到了不相干的字符串。改为在调用点显式传 `title`。
+2. **点击当前分类图标回到顶部**：在任意带分类的页面，点击你当前所在的那个分类图标，
+   列表会滚回顶部；切换分类仍是正常切换。用 `setOnItemReselectedListener` 实现
+   （Material 只在选中项变化时回调 `onItemSelected`，点已选中项走 reselect）。
+
+- 版本 1.6.8(83) → 1.6.9(84)。
 
 ## 1.6.8 更新摘要
 
