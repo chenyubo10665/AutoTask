@@ -21,12 +21,34 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.6.0-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.0/AutoTask-1.6.0-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.6.0-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.0/AutoTask-1.6.0-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.6.0-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.0/AutoTask-1.6.0-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.6.0-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.0/AutoTask-1.6.0-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.0/AutoTask-1.6.0-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.6.8-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.8/AutoTask-1.6.8-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.6.8-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.8/AutoTask-1.6.8-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.6.8-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.8/AutoTask-1.6.8-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.6.8-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.8/AutoTask-1.6.8-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.8/AutoTask-1.6.8-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.6.8 更新摘要
+
+补齐原闭源版本的 **7 项能力**，并让旧版任务导入真正可用。
+
+**新增能力**
+
+1. 充电方式细分（交流 AC / USB / 无线 / 充电底座 / 未连接电源）
+2. 可见窗口判断
+3. 查找控件时可包含不可见控件
+4. 优化查找速度（命中即停）
+5. 任务覆盖导入（重名时询问覆盖或跳过）
+6. 本页面内只执行一次（新规则类型）
+7. 从最近任务中隐藏
+
+**旧版任务导入**
+
+来自旧版本的 11 个预置任务现在全部可以转换导入，此前一个都成功不了。修掉 5 个独立缺陷：
+转换时规则节点根本没被改写、控制流的 relation 约束、applet id 需要重映射、参数个数不一致
+导致越界、同一参数同时有值与引用导致编辑器崩溃。转换后会把缺失与需确认的步骤写进任务描述。
+
+- 版本 1.6.6(81) → 1.6.8(83)。
 
 ## 1.6.0 更新摘要
 
