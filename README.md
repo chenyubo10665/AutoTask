@@ -21,12 +21,34 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.6.9.2-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.2/AutoTask-1.6.9.2-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.6.9.2-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.2/AutoTask-1.6.9.2-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.6.9.2-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.2/AutoTask-1.6.9.2-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.6.9.2-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.2/AutoTask-1.6.9.2-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.2/AutoTask-1.6.9.2-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.6.9.3-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.3/AutoTask-1.6.9.3-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.6.9.3-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.3/AutoTask-1.6.9.3-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.6.9.3-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.3/AutoTask-1.6.9.3-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.6.9.3-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.3/AutoTask-1.6.9.3-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.3/AutoTask-1.6.9.3-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.6.9.3 更新摘要
+
+修一个夜间模式下的配色错乱：任务编辑器里的注释块会显示成**浅桃色底 + 深红字**，
+在深色页面上非常刺眼。
+
+原因是同一块界面里混用了两套主题色：注释的**背景**色由代码解析主题属性（`ColorScheme`）
+并缓存，而**文字**色由布局文件的 `?colorTertiary` 在 inflate 时解析。切换夜间模式时
+Activity 重建，但 `onDestroy` 为了不让旋转/字号变化丢缓存，在 `isChangingConfigurations`
+时刻意跳过了清空 —— 于是背景色还停在**浅色**主题取值，文字色已更新成夜间取值。
+
+修法：给颜色缓存加**主题身份校验**，主题实例变了就自动失效。旋转、字号变化主题实例不变，
+缓存继续复用；夜间切换产生新实例，缓存自动丢弃，重新按新主题解析。
+
+修复后注释块背景实测 `#442211`，正好等于 `0.42 × 夜间tertiaryContainer(#7E2C00) +
+0.58 × 页面背景(#191C1D)`，与文字 `#FFB597` 来自同一套夜色。
+
+顺带核对：浅色与夜间主题 26 项属性逐项对齐、`values-night` 覆盖完整；布局中 6 处硬编码
+颜色都在悬浮窗/购买页的半透明遮罩上，属刻意设计；其余 26 处使用 `ColorScheme` 的界面
+（对话框标题、错误提示、引用块、弹出菜单选中色等）随本次修复一并变正确。
+
+- 版本 1.6.9.2(86) → 1.6.9.3(87)。
 
 ## 1.6.9.2 更新摘要
 
