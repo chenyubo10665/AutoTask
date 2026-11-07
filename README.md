@@ -21,12 +21,34 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.6.9.1-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.1/AutoTask-1.6.9.1-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.6.9.1-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.1/AutoTask-1.6.9.1-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.6.9.1-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.1/AutoTask-1.6.9.1-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.6.9.1-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.1/AutoTask-1.6.9.1-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.1/AutoTask-1.6.9.1-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.6.9.2-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.2/AutoTask-1.6.9.2-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.6.9.2-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.2/AutoTask-1.6.9.2-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.6.9.2-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.2/AutoTask-1.6.9.2-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.6.9.2-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.2/AutoTask-1.6.9.2-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.2/AutoTask-1.6.9.2-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.6.9.2 更新摘要
+
+修一个点「启用悬浮助手」时弹出的裸 NullPointerException。
+
+在单次任务页或编辑器里唤起悬浮助手、点「**启用**」后，会弹出「发生错误」框：
+
+```
+java.lang.NullPointerException
+  at java.util.Objects.requireNonNull(Objects.java:203)
+  at rikka.shizuku.ShizukuBinderWrapper.<init>
+```
+
+根因：开启无障碍服务走的是 `SystemServiceHelper.getSystemService("settings")`，这个接口在低版本
+系统上会返回 **null**（原代码里本来就留了一句同样的 TODO）。把 null 交给 `ShizukuBinderWrapper`，
+它的构造函数直接 `requireNonNull`，于是抛异常。
+
+修法：settings 服务拿不到时，不再硬套 `ShizukuBinderWrapper`，改为回退到 Shizuku 的 `newProcess`
+执行同一条 `settings put secure ...` 命令 —— 这条路径在本机（Android 7.1.2 + Shizuku）已稳定可用，
+`A11yAutoEnabler` 一直用它。两者都不可用时给出明确失败提示，不再是裸 NPE。
+
+- 版本 1.6.9.1(85) → 1.6.9.2(86)。
 
 ## 1.6.9.1 更新摘要
 
