@@ -21,12 +21,32 @@
 
 | 安装包 | 适用设备 |
 | --- | --- |
-| [`AutoTask-1.6.9-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9/AutoTask-1.6.9-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
-| [`AutoTask-1.6.9-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9/AutoTask-1.6.9-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
-| [`AutoTask-1.6.9-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9/AutoTask-1.6.9-armeabi-v7a.apk) | 32 位老机型 |
-| [`AutoTask-1.6.9-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9/AutoTask-1.6.9-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9/AutoTask-1.6.9-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
+| [`AutoTask-1.6.9.1-universal.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.1/AutoTask-1.6.9.1-universal.apk) | 通用包，四种 ABI 合一，体积最大 |
+| [`AutoTask-1.6.9.1-arm64-v8a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.1/AutoTask-1.6.9.1-arm64-v8a.apk) | **推荐**，绝大多数 2016 年后的 64 位手机 |
+| [`AutoTask-1.6.9.1-armeabi-v7a.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.1/AutoTask-1.6.9.1-armeabi-v7a.apk) | 32 位老机型 |
+| [`AutoTask-1.6.9.1-x86_64.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.1/AutoTask-1.6.9.1-x86_64.apk) / [`-x86.apk`](https://github.com/chenyubo10665/AutoTask/releases/download/v1.6.9.1/AutoTask-1.6.9.1-x86.apk) | 模拟器（BlueStacks、MuMu 等） |
 
 系统要求：Android 7.0（API 24）及以上，目标 API 36。
+
+## 1.6.9.1 更新摘要
+
+修一个会让 Shizuku 服务进程**整个挂掉**的崩溃。
+
+在 Shizuku 模式下，任务执行到「**弹出文本提示**」或「**绘制控件边界**」时，整个远程进程会直接退出：
+
+```
+FATAL EXCEPTION IN SYSTEM PROCESS: ShizukuAutomatorThread
+java.lang.NoSuchFieldException: No field mClassLoader in class Landroid/app/ContextImpl;
+```
+
+现象是服务看着还在、常驻任务却不再响应。根因是叠加窗初始化时无条件反射平台私有字段
+`ContextImpl.mClassLoader`，而该字段在 Android 7.x 上并不存在，异常穿透 lazy 初始化器把整个 shell 进程带走。
+
+修法两层：该字段改为「有则用、无则跳过」并沿 `ContextWrapper` 链逐层查找；叠加窗 inflate **直接使用本应用
+自己的 ClassLoader**（`ThemedWindowContext.getClassLoader()`），不再依赖任何平台私有字段。另给
+`TYPE_SECURE_SYSTEM_OVERLAY` 加了降级链（它同样是隐藏字段）。
+
+- 版本 1.6.9(84) → 1.6.9.1(85)。
 
 ## 1.6.9 更新摘要
 
